@@ -103,7 +103,7 @@ MonoBehaviour:
   maxSpeed: 5
   moveForce: 3
   jumpHeight: 15
-  shotgunForce: 20
+  shotgunForce: 15
   reloadSpeed: 2
   secondReloadSpeed: 1
 --- !u!50 &4606419847884069035
@@ -237,7 +237,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8.733849
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

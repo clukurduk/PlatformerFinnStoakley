@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float maxSpeed, moveForce, jumpHeight,groundShotgunForce, airShotgunForce, reloadSpeed, secondReloadSpeed, xVelocityMaintained;
+    [SerializeField] float maxSpeed, moveForce, jumpHeight,groundShotgunForce, airShotgunForce, reloadSpeed, secondReloadSpeed, xVelocityMaintained, yVelocityMaintained;
     float xDirection=0f, shots, maxShots=2, currentShotgunForce;
     bool jumpable, shootable, airborne;
     Coroutine reloadCoroutine;
@@ -73,7 +73,14 @@ public class Player : MonoBehaviour
             direction.z = 0f;
             direction.Normalize();
             Debug.Log(direction.ToString());
-            rb.velocity = new Vector3(rb.velocity.x/xVelocityMaintained, 0, 0);
+            if (rb.velocity.y < 0f)
+            {
+                rb.velocity = new Vector3(rb.velocity.x / xVelocityMaintained, 0, 0);
+            }
+            else
+            {
+                rb.velocity = new Vector3(rb.velocity.x / xVelocityMaintained, rb.velocity.y/yVelocityMaintained, 0);
+            }
             rb.AddForce((-direction)*currentShotgunForce, ForceMode2D.Impulse);
             shots -= 1;
             Debug.Log(shootable.ToString());
@@ -105,6 +112,14 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Killbox"))
         {
             Debug.Log("Death");
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            jumpable = false;
+            airborne=true;
         }
     }
 

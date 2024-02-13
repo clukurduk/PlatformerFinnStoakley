@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     float timer;
     [SerializeField] GameObject impactFrame;
     const int maxShots = 2;
+    [SerializeField] GameObject shotgunParticle;
 
     Rigidbody2D rb;
     //reference rb
@@ -21,7 +22,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        GameManager.Instance.playerShots = maxShots;
         timer = 0;
     }
 
@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
             Time.timeScale = 0.03f;
             impactFrame.SetActive(true);
             timer = freezeFrameTime;
+            
         }
     }
 

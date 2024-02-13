@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 213667751}
   - component: {fileID: 213667752}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,6 +353,7 @@ MonoBehaviour:
   shotgunKickback: -0.5
   basePos: 1
   resetRate: 0.01
+  shotgunParticle: {fileID: 8031749880959568348, guid: e27253f99c93a7c4088df6f55890ac47, type: 3}
 --- !u!1001 &446507990
 PrefabInstance:
   m_ObjectHideFlags: 0

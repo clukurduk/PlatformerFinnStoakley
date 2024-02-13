@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float maxSpeed, moveForce, jumpHeight,groundShotgunForce, airShotgunForce, reloadSpeed, secondReloadSpeed, xVelocityMaintained, yVelocityMaintained;
-    float xDirection=0f, shots, maxShots=2, currentShotgunForce;
+    [SerializeField] float maxSpeed, moveForce, jumpHeight, groundShotgunForce, airShotgunForce, reloadSpeed, secondReloadSpeed, xVelocityMaintained, yVelocityMaintained;
+    float xDirection = 0f, currentShotgunForce;
     bool jumpable, shootable, airborne;
     Coroutine reloadCoroutine;
-
+    [SerializeField] private float freezeFrameTime;
+    float timer;
+    [SerializeField] GameObject impactFrame;
+    const int maxShots = 2;
 
     Rigidbody2D rb;
     //reference rb
@@ -18,15 +21,33 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        shots = maxShots;
+        GameManager.Instance.playerShots = maxShots;
+        timer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Update2();
+        Timer();
         Movement();
         Jump();
         Shotgun();
+    }
+
+    void Update2()
+    {
+
+    }
+
+    private void Timer()
+    {
+        timer -= Time.unscaledDeltaTime;
+        if (timer <= 0)
+        {
+            Time.timeScale = 1f;
+            impactFrame.SetActive(false);
+        }
     }
 
     void Movement()
@@ -55,7 +76,7 @@ public class Player : MonoBehaviour
             currentShotgunForce = airShotgunForce;
         }
 
-        if (shots < 1)
+        if (GameManager.Instance.playerShots < 1)
         {
             shootable = false;
             
@@ -73,21 +94,27 @@ public class Player : MonoBehaviour
             direction.z = 0f;
             direction.Normalize();
             Debug.Log(direction.ToString());
-            if (rb.velocity.y < 0f)
+            if (rb.velocity.y < 0f && direction.y < 0f)
             {
                 rb.velocity = new Vector3(rb.velocity.x / xVelocityMaintained, 0, 0);
             }
             else
-            {
+            { 
                 rb.velocity = new Vector3(rb.velocity.x / xVelocityMaintained, rb.velocity.y/yVelocityMaintained, 0);
+                Debug.Log("poo");
             }
+            
             rb.AddForce((-direction)*currentShotgunForce, ForceMode2D.Impulse);
-            shots -= 1;
+            GameManager.Instance.playerShots -= 1;
             Debug.Log(shootable.ToString());
-            if (shots < 1)
+            if (GameManager.Instance.playerShots < 1)
             {
                 reloadCoroutine = StartCoroutine(Co_Reload());
             }
+
+            Time.timeScale = 0.03f;
+            impactFrame.SetActive(true);
+            timer = freezeFrameTime;
         }
     }
 
@@ -127,10 +154,10 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(reloadSpeed);
         Debug.Log("reload1");
-        shots += 1;
+        GameManager.Instance.playerShots += 1;
         yield return new WaitForSeconds(secondReloadSpeed);
         Debug.Log("reload2");
-        shots += 1;
-        Debug.Log(shots);
+        GameManager.Instance.playerShots += 1;
+        Debug.Log(GameManager.Instance.playerShots);
     }
 }

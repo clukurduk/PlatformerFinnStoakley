@@ -27,13 +27,14 @@ public class EnemyGuard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerFound)
-        {
 
-            var step = speed * Time.deltaTime;
-            Vector3 playerPosition = player.transform.position;
-            transform.position = Vector3.MoveTowards(transform.position, playerPosition, step);
-        }
+        //if (playerFound)
+        //{
+
+        //    var step = speed * Time.deltaTime;
+        //    Vector3 playerPosition = player.transform.position;
+        //    transform.position = Vector3.MoveTowards(transform.position, playerPosition, step);
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

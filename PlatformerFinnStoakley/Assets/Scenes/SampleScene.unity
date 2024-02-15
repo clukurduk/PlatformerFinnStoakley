@@ -354,6 +354,8 @@ MonoBehaviour:
   basePos: 1
   resetRate: 0.01
   shotgunParticle: {fileID: 8031749880959568348, guid: e27253f99c93a7c4088df6f55890ac47, type: 3}
+  bullet: {fileID: 3632674488659349918, guid: 89e435f226d36fe4ea9d1ad4a52f2620, type: 3}
+  force: 100
 --- !u!1001 &446507990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1369,6 +1371,14 @@ PrefabInstance:
       propertyPath: moveForce
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 5928795589923394463, guid: c5768d774f6e0ce469435ca7dfb2783c, type: 3}
+      propertyPath: ShotgunObj
+      value: 
+      objectReference: {fileID: 213667749}
+    - target: {fileID: 5928795589923394463, guid: c5768d774f6e0ce469435ca7dfb2783c, type: 3}
+      propertyPath: shotgunObj
+      value: 
+      objectReference: {fileID: 213667749}
     - target: {fileID: 5928795589923394463, guid: c5768d774f6e0ce469435ca7dfb2783c, type: 3}
       propertyPath: impactFrame
       value: 

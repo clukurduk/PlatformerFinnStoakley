@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject impactFrame;
     const int maxShots = 2;
     [SerializeField] GameObject shotgunParticle;
+    [SerializeField] GameObject shotgunObj;
 
     Rigidbody2D rb;
     //reference rb
@@ -28,17 +29,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Update2();
+
         Timer();
         Movement();
         Jump();
         Shotgun();
-    }
-
-    void Update2()
-    {
+        
 
     }
+
+
 
     private void Timer()
     {
@@ -111,6 +111,7 @@ public class Player : MonoBehaviour
             {
                 reloadCoroutine = StartCoroutine(Co_Reload());
             }
+            shotgunObj.GetComponent<Shotgun>().ShotgunAnimation();
 
             Time.timeScale = 0.03f;
             impactFrame.SetActive(true);
@@ -153,6 +154,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Co_Reload()
     {
+
         yield return new WaitForSeconds(reloadSpeed);
         Debug.Log("reload1");
         GameManager.Instance.playerShots += 1;

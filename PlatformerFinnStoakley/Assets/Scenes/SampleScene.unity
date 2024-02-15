@@ -1401,6 +1401,22 @@ PrefabInstance:
       propertyPath: yVelocityMaintained
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7193058141535848588, guid: c5768d774f6e0ce469435ca7dfb2783c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193058141535848588, guid: c5768d774f6e0ce469435ca7dfb2783c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193058141535848588, guid: c5768d774f6e0ce469435ca7dfb2783c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1702784145, guid: b7871f0bb37a53647b7ffd5adef1509f, type: 3}
+    - target: {fileID: 7193058141535848588, guid: c5768d774f6e0ce469435ca7dfb2783c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8284881111224692340, guid: c5768d774f6e0ce469435ca7dfb2783c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
